@@ -1,16 +1,12 @@
-from email import message
 from django.shortcuts import render, redirect
-from .models import *
+from ..capture.models import *
 from django.contrib import messages
-from .forms import *
+from ..superuser.forms import *
 
 # Create your views here.
 
-def index(request):
-    return render(request, 'capture/index.html')
-
 def login(request):
-    return render(request, 'capture/login.html')
+    return render(request, 'superuser/login.html')
 
 '''''
 def save_user(request):
@@ -26,6 +22,16 @@ def save_user(request):
         return redirect('/')
 '''
 
+def delete_user(request):
+    return
+
+def edit_user(request):
+    return
+
+def show_user(request):
+    return
+
+
 def home(request):
     if request.method == "POST":
         form = UserLogin(request.POST)
@@ -33,12 +39,10 @@ def home(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             try:
-               user = User.objects.get(username=username, password=password)
-               return render (request, 'capture/home.html', {'username': username})
+                user = User.objects.get(username=username, password=password)
+                return render (request, 'superuser/home.html', {'username': username})
             except:
-               messages.error(request, 'Usuario o Contraseña Incorrecto')
+                messages.error(request, 'Usuario o Contraseña Incorrecta')
         else:
            form = UserLogin()
-           messages.error(request, 'Usuario o Contraseña Incorrecto')
-        return render(request, 'capture/login.html', {'form': form})
-
+        return render(request, 'superuser/login.html', {'form': form})

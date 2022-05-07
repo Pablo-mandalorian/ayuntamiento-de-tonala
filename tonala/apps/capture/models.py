@@ -9,14 +9,20 @@ class Privilege(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     # Privilege
     privilege = models.CharField(max_length=30)
-
+    
+   
+    def __str__(self):
+        return "{1}".format(self.id, self.privilege)
 
 class User(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     username = models.CharField(max_length=100)
     privilege = models.ForeignKey(Privilege, null=False, blank=False, on_delete=models.CASCADE)
     password = models.CharField(max_length=256)
-
+    
+    
+    def __str__(self):
+        return "{1}".format(self.id, self.username)
 
 # Tipo de titularidad
 class Ownership_Type(models.Model):
@@ -24,19 +30,28 @@ class Ownership_Type(models.Model):
     ownership_type = models.CharField(max_length=100 ,null=False)
 
 
+    def __str__(self):
+        return "{1}".format(self.id, self.ownership_type)
+
 # Acreditación Predio
 class Property_Accreditation(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     #document_pdf
-    document_pdf = models.BinaryField(null=False)
+    document_pdf = models.BinaryField(null=False, editable=True)
     ownership_type = models.ForeignKey(Ownership_Type,null=False, blank=False, on_delete=models.CASCADE)
 
+
+    def __str__(self):
+        return "{1}".format(self.id, self.document_pdf)
 
 # Solicitud
 class Request(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    request_pdf = models.BinaryField(null=False)
+    request_pdf = models.BinaryField(null=False, editable=True)
 
+
+    def __str__(self):
+        return "{1}".format(self.id)
 
 class Status(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
@@ -48,23 +63,33 @@ class Status(models.Model):
     status = models.CharField(max_length=50,null=False, choices=type)
 
 
+    def __str__(self):
+        return "{1}".format(self.id, self.status)
+
 class Not_Applicable(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     not_applicable = models.CharField(max_length=50,null=False)
 
 
+    def __str__(self):
+        return "{1}".format(self.id, self.not_applicable)
+
 # Carta Poder
 class Power_Letter(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    power_letter_pdf = models.BinaryField(null=False)
+    power_letter_pdf = models.BinaryField(null=False, editable=True)
     not_applicable = models.ForeignKey(Not_Applicable, null=False, blank=False, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "{1}".format(self.id, self.power_letter_pdf)
 
 class Constitutive_Act(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    act_pdf = models.BinaryField(null=False)
+    act_pdf = models.BinaryField(null=False, editable=True)
     not_applicable = models.ForeignKey(Not_Applicable, null=False, blank=False, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "{1}".format(self.id, self.act_pdf)
 
 class Identification_Type(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
@@ -75,11 +100,16 @@ class Identification_Type(models.Model):
     ]
     identification_type = models.CharField(max_length=20,null=False, choices=type)
 
+    def __str__(self):
+        return "{1}".format(self.id, self.identification_type)
+    
 
 class Identification(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     identification_type = models.ForeignKey(Identification_Type, null=False, blank=False, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "{1}".format(self.id, self.identification_type)
 
 class Location(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
@@ -87,12 +117,18 @@ class Location(models.Model):
     location_link = models.CharField(max_length=200,null=False)
 
 
+    def __str__(self):
+        return "{1}".format(self.id, self.photo_ubication)
+
 #Plano
 class Plane(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    plane_pdf = models.BinaryField(null=False)
+    plane_pdf = models.BinaryField(null=False, editable=True)
     description = models.TextField(null=False)
 
+
+    def __str__(self):
+        return "{1}".format(self.id, self.plane_pdf)
 
 #expediente
 class Proceedings(models.Model):
@@ -107,7 +143,13 @@ class Proceedings(models.Model):
     comments = models.TextField(null=False)
 
 
+    def __str__(self):
+        return "{1}".format(self.id)
+
 #expediente
 class User_Proceedings(models.Model):
     id_user = models.ForeignKey(User,null=False, blank=False, on_delete=models.CASCADE)
     id_proceedings = models.ForeignKey(Proceedings,null=False, blank=False, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{1}".format(self.id_user, self.id_proceedings)

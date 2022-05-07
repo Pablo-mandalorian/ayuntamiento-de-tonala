@@ -1,10 +1,18 @@
-{% extends "base.html" %}
+{% extends "superuser/base.html" %}
 {% load static %}
 {% block css %} {% endblock %}
 {% block title %}Home{% endblock %}
 {% block section %}
-<form class="form-signin" action="/validation" method="POST">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+    <button type="button" class="btn-close" aria-label="Close"></button>
+    <strong class="text-dark">{{ message }}</strong>
+</div>
+{% endfor %}
+{% endif %}
+<form class="form-signin" action="{% url 'superuser_app:home' %}" method="POST">{% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign in SUPERUSER</h1>
     <div class="form-floating">
         <input type="text" class="form-control" id="username" name="username" placeholder="Username">
         <label for="username">Username</label>
