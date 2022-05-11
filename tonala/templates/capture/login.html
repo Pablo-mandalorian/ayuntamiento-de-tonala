@@ -11,7 +11,7 @@
 </div>
 {% endfor %}
 {% endif %}
-<form class="form-signin" action="{% url 'capture_app:home' %}" method="POST">{% csrf_token %}
+<form class="form-signin" action="{% url 'capture_app:inicio' %}" method="POST">{% csrf_token %}
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
     <div class="form-floating">
         <input type="text" class="form-control" id="username" name="username" placeholder="Username">

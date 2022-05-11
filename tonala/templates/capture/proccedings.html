@@ -1,0 +1,48 @@
+{% extends "capture/base.html" %}
+{% load static %}
+{% block title %}Expedientes{% endblock %}
+{% block section %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+    <button type="button" class="btn-close" aria-label="Close"></button>
+    <strong class="text-dark">{{ message }}</strong>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Estado</th>
+            <th>Solicitud</th>
+            <th>Acreditación</th>
+            <th>Acta Constitutiva</th>
+            <th>Identificacion</th>
+            <th>Localización</th>
+            <th>Plano</th>
+            <th>Comentarios</th>
+            <th colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+       {% for i in proccedings %}
+       <tr>
+           <td>{{forloop.counter}}</td>
+           <td>{{i.status}}</td>
+           <td>{{i.request}}</td>
+           <td>{{i.accreditation}}</td>
+           <td>{{i.constitutive_act}}</td>
+           <td>{{i.identification}}</td>
+           <td>{{i.location}}</td>
+           <td>{{i.plane}}</td>
+           <td>{{i.comments}}</td>
+           <td> <a href="{% url 'capture_app:editar-expediente' id=i.id %}" class="btn btn-info">Edit</a></td>
+           <td> <a href="{% url 'capture_app:eliminar-expediente' id=i.id %}" class="btn btn-danger">Delete</a></td>
+       </tr>
+       {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -37,7 +37,7 @@ class Ownership_Type(models.Model):
 class Property_Accreditation(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     #document_pdf
-    document_pdf = models.BinaryField(null=False, editable=True)
+    document_pdf = models.FileField(upload_to='store/document_pdf/',null=False)
     ownership_type = models.ForeignKey(Ownership_Type,null=False, blank=False, on_delete=models.CASCADE)
 
 
@@ -47,11 +47,11 @@ class Property_Accreditation(models.Model):
 # Solicitud
 class Request(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    request_pdf = models.BinaryField(null=False, editable=True)
+    request_pdf = models.FileField(upload_to='store/request_pdf/',null=False)
 
 
     def __str__(self):
-        return "{1}".format(self.id)
+        return "{1}".format(self.id, self.request_pdf)
 
 class Status(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
@@ -77,7 +77,7 @@ class Not_Applicable(models.Model):
 # Carta Poder
 class Power_Letter(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    power_letter_pdf = models.BinaryField(null=False, editable=True)
+    power_letter_pdf = models.FileField(upload_to='store/power_letter_pdf/',null=False)
     not_applicable = models.ForeignKey(Not_Applicable, null=False, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -85,7 +85,7 @@ class Power_Letter(models.Model):
 
 class Constitutive_Act(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    act_pdf = models.BinaryField(null=False, editable=True)
+    act_pdf = models.FileField(upload_to='store/act_pdf/',null=False)
     not_applicable = models.ForeignKey(Not_Applicable, null=False, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -113,7 +113,7 @@ class Identification(models.Model):
 
 class Location(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    photo_ubication = models.ImageField(null=False)
+    photo_ubication = models.ImageField(upload_to='store/photo_ubication/',null=False)
     location_link = models.CharField(max_length=200,null=False)
 
 
@@ -123,7 +123,7 @@ class Location(models.Model):
 #Plano
 class Plane(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    plane_pdf = models.BinaryField(null=False, editable=True)
+    plane_pdf = models.FileField(upload_to='store/plane_pdf/',null=False)
     description = models.TextField(null=False)
 
 
@@ -144,7 +144,7 @@ class Proceedings(models.Model):
 
 
     def __str__(self):
-        return "{1}".format(self.id)
+        return "{0}".format(self.id)
 
 #expediente
 class User_Proceedings(models.Model):

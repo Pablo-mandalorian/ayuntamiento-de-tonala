@@ -1,16 +1,58 @@
 from email import message
 from django.shortcuts import render, redirect
-from .models import *
+from .models import Proceedings, User
 from django.contrib import messages
 from .forms import *
 
+
 # Create your views here.
+
 
 def index(request):
     return render(request, 'capture/index.html')
 
+
 def login(request):
     return render(request, 'capture/login.html')
+
+
+def proccedings(request):
+    proccedings = Proceedings.objects.all()
+    messages.success(request,'Expedientes Listados Correctamente')
+    return render(request, 'capture/proccedings.html', {"proccedings":proccedings})
+
+
+def edit_proccedings(request, id):
+    proccedings = Proceedings.objects.get(id=id)
+    return render(request, 'capture/edit_proccedings.html', {"proccedings":proccedings})
+
+
+def editing_proccedings(request):
+    id = request.POST['id']
+    statuss = request.POST['status']
+    requestt = request.POST['request']
+    accreditation = request.POST['accreditation']
+    constitutive_act = request.POST['constitutive_act']
+    identification = request.POST['identification']
+    location = request.POST['location']
+    plane = request.POST['plane']
+    comments = request.POST['comments']
+    procceding = Proceedings.objects.get(id=id)
+    procceding.status = statuss
+    procceding.request = requestt
+    procceding.accreditation = accreditation
+    procceding.constitutive_act = constitutive_act
+    procceding.identification = identification
+    procceding.location = location
+    procceding.plane = plane
+    procceding.comments = comments
+    procceding.save()
+    return redirect('/')
+
+def delete_proccedings(id):
+    proccedings = Proceedings.objects.get(id=id)
+    proccedings.delete()
+    return redirect('inicio/')
 
 '''''
 def save_user(request):
@@ -25,6 +67,7 @@ def save_user(request):
         messages.success(request,'User Saved!')
         return redirect('/')
 '''
+
 
 def home(request):
     if request.method == "POST":
@@ -41,4 +84,22 @@ def home(request):
            form = UserLogin()
            messages.error(request, 'Usuario o Contraseña Incorrecto')
         return render(request, 'capture/login.html', {'form': form})
+
+
+'''
+def uploadFile(request):
+    if request.method == 'POST':
+        filename = request.POST['filename']
+        owner = request.POST['owner']
+        pdf = request.FILES['pdf']
+        cover = request.FILES['cover']
+
+        a = Files(filename=filename, owner=owner, pdf=pdf, cover=cover)
+        a.save()
+        messages.success(request, 'Files Submitted successfully!')
+        return redirect('files')
+    else:
+    	messages.error(request, 'Files was not Submitted successfully!')
+    	return redirect('form')
+'''
 
