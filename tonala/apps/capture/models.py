@@ -133,13 +133,13 @@ class Plane(models.Model):
 #expediente
 class Proceedings(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
-    status = models.ForeignKey(Status, null=False, blank=False, on_delete=models.CASCADE)
-    request = models.ForeignKey(Request,null=False, blank=False, on_delete=models.CASCADE)
-    accreditation = models.ForeignKey(Property_Accreditation, null=False, blank=False, on_delete=models.CASCADE)
-    constitutive_act = models.ForeignKey(Constitutive_Act, null=False, blank=False, on_delete=models.CASCADE)
-    identification = models.ForeignKey(Identification, null=False, blank=False, on_delete=models.CASCADE)
-    location = models.ForeignKey(Location, null=False, blank=False, on_delete=models.CASCADE)
-    plane = models.ForeignKey(Plane, null=False, blank=False, on_delete=models.CASCADE)
+    id_status = models.ForeignKey(Status, related_name='status_proceedings', null=False, blank=False, on_delete=models.CASCADE)
+    id_request = models.ForeignKey(Request, related_name='request_proceedings', null=False, blank=False, on_delete=models.CASCADE)
+    id_accreditation = models.ForeignKey(Property_Accreditation, related_name='accreditation_proceedings', null=False, blank=False, on_delete=models.CASCADE)
+    id_constitutive_act = models.ForeignKey(Constitutive_Act, related_name='constitutive_act_proceedings', null=False, blank=False, on_delete=models.CASCADE)
+    id_identification = models.ForeignKey(Identification, related_name='identification_proceedings', null=False, blank=False, on_delete=models.CASCADE)
+    id_location = models.ForeignKey(Location, related_name='location_proceedings', null=False, blank=False, on_delete=models.CASCADE)
+    id_plane = models.ForeignKey(Plane, related_name='plane_proceedings', null=False, blank=False, on_delete=models.CASCADE)
     comments = models.TextField(null=False)
 
 

@@ -25,6 +25,7 @@ SECRET_KEY = 'django-insecure-i$m^iq3g%+*hz)$vp@#59fmcjuocb^6$u!ts%%14in@74$$e0g
 DEBUG = True
 
 ALLOWED_HOSTS = []
+ROLEPERMISSIONS_MODULE = 'apps.capture.roles'
 
 
 # Application definition
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rolepermissions',
 ]
 
 MIDDLEWARE = [

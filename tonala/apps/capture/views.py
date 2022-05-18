@@ -1,9 +1,8 @@
-from email import message
 from django.shortcuts import render, redirect
-from .models import Proceedings, User
+from .models import *
 from django.contrib import messages
 from .forms import *
-
+from django.urls import reverse
 
 # Create your views here.
 
@@ -29,31 +28,33 @@ def edit_proccedings(request, id):
 
 def editing_proccedings(request):
     id = request.POST['id']
-    statuss = request.POST['status']
-    requestt = request.POST['request']
+    status = request.POST['status']
+    request = request.POST['request']
     accreditation = request.POST['accreditation']
     constitutive_act = request.POST['constitutive_act']
     identification = request.POST['identification']
     location = request.POST['location']
     plane = request.POST['plane']
     comments = request.POST['comments']
-    procceding = Proceedings.objects.get(id=id)
-    procceding.status = statuss
-    procceding.request = requestt
-    procceding.accreditation = accreditation
-    procceding.constitutive_act = constitutive_act
-    procceding.identification = identification
-    procceding.location = location
-    procceding.plane = plane
-    procceding.comments = comments
+    #procceding = Proceedings.objects.get(id=id)
+    procceding = Proceedings.objects.filter(id=id).update(
+        status_proceedings = status,
+        request_proceedings = request,
+        accreditation_proceedings = accreditation,
+        constitutive_act_proceedings = constitutive_act,
+        identification_proceedings = identification,
+        location_proceedings = location,
+        plane_proceedings = plane,
+        comments = comments
+    )
     procceding.save()
     return redirect('/')
 
-def delete_proccedings(id):
+
+def delete_proccedings(request, id):
     proccedings = Proceedings.objects.get(id=id)
     proccedings.delete()
-    return redirect('inicio/')
-
+    return redirect('/')
 '''''
 def save_user(request):
     username = request.POST['username']
