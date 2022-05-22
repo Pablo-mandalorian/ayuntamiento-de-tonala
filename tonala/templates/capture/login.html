@@ -1,10 +1,11 @@
 {% extends "capture/base.html" %}
 {% load static %}
-{% block css %} {% endblock %}
+{% block css %} <link href="{% static 'css/login.css' %}" rel="stylesheet" > {% endblock %}
 {% block title %}Home{% endblock %}
 {% block section %}
 {% if messages %}
 {% for message in messages %}
+
 <div class="alert alert-success" role="alert">
     <button type="button" class="btn-close" aria-label="Close"></button>
     <strong class="text-dark">{{ message }}</strong>
@@ -12,8 +13,8 @@
 {% endfor %}
 {% endif %}
 <form class="form-signin" action="{% url 'capture_app:inicio' %}" method="POST">{% csrf_token %}
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    <div class="form-floating">
+    <h1 class="information">Please sign in</h1>
+    <div class="form-float">
         <input type="text" class="form-control" id="username" name="username" placeholder="Username">
         <label for="username">Username</label>
     </div>

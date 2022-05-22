@@ -137,7 +137,7 @@ class Proceedings(models.Model):
     id_request = models.ForeignKey(Request, related_name='request_proceedings', null=False, blank=False, on_delete=models.CASCADE)
     id_accreditation = models.ForeignKey(Property_Accreditation, related_name='accreditation_proceedings', null=False, blank=False, on_delete=models.CASCADE)
     id_constitutive_act = models.ForeignKey(Constitutive_Act, related_name='constitutive_act_proceedings', null=False, blank=False, on_delete=models.CASCADE)
-    id_identification = models.ForeignKey(Identification, related_name='identification_proceedings', null=False, blank=False, on_delete=models.CASCADE)
+    id_identification = models.ForeignKey(Identification_Type, related_name='identification_proceedings', null=False, blank=False, on_delete=models.CASCADE)
     id_location = models.ForeignKey(Location, related_name='location_proceedings', null=False, blank=False, on_delete=models.CASCADE)
     id_plane = models.ForeignKey(Plane, related_name='plane_proceedings', null=False, blank=False, on_delete=models.CASCADE)
     comments = models.TextField(null=False)
