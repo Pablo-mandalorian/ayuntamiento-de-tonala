@@ -1,0 +1,15 @@
+:root{
+    --main-bg-color: #fafbfd;
+    --color-details-w: #f2f2f2;
+    --color-details-r: #cf2e2e;
+    --color-details-b: #444444;
+}
+
+*{
+    background-color: var(--main-bg-color);
+    font: bold;
+}
+
+.alert{
+    background-color:#cf2e2e;
+}

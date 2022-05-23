@@ -1,1 +1,27 @@
-<a href="{% url 'capture_app:iniciar_sesion' %}">Iniciar Sesión</a>
+{% extends "capture/base.html" %}
+{% load static %}
+{% block css %} <link href="{% static 'css/index.css' %}" rel="stylesheet"> {% endblock %}
+
+{% block title %}Inicio{% endblock %}
+{% block section %}
+<div class="info">
+    <h1>BIENVENIDO/A</h1>
+    <h4>Elige la opcion correspondiente a tu perfil</h4>    
+ </div>
+    <div class="first-container">
+        <div class="option-cap"> 
+            <a href="{% url 'capture_app:iniciar_sesion' %}">Capturista</a>
+        </div>
+        <div class="option-admin">
+            <a href="{% url 'capture_app:iniciar_sesion' %}">Administador</a>
+        </div>
+       <div class="option-sadmin"> 
+           <a href="{% url 'capture_app:iniciar_sesion' %}">Super Administrados</a>
+       </div>
+    </div>
+ 
+    <div class="footer">
+        Sistema de captura<br>
+        Propiedad de Ayuntamiento de Tonala
+    </div>
+{% endblock %}

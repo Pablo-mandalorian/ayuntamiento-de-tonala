@@ -6,7 +6,7 @@
     <div class="col-md-4 offset-md-4">
         <div class="card">
             <div class="card-body">
-                <form action="{% url 'capture_app:expediente-editado' %}" method="post"> {% csrf_token %}
+                <form action="{% url 'capture_app:expediente-editado' proccedings.id %}" method="post"> {% csrf_token %}
                     <div class="form-group py-2">
                         <input type="text" name="id" id="id" class="form-control" value="{{proccedings.id}}" readonly>
                     </div>

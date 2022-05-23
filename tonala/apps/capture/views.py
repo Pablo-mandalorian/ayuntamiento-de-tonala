@@ -4,6 +4,7 @@ from django.contrib import messages
 from .forms import *
 from django.urls import reverse
 
+
 # Create your views here.
 
 
@@ -26,28 +27,15 @@ def edit_proccedings(request, id):
     return render(request, 'capture/edit_proccedings.html', {"proccedings":proccedings})
 
 
-def editing_proccedings(request):
-    id = request.POST['id']
-    status = request.POST['status']
-    request = request.POST['request']
-    accreditation = request.POST['accreditation']
-    constitutive_act = request.POST['constitutive_act']
-    identification = request.POST['identification']
-    location = request.POST['location']
-    plane = request.POST['plane']
-    comments = request.POST['comments']
-    #procceding = Proceedings.objects.get(id=id)
-    procceding = Proceedings.objects.filter(id=id).update(
-        status_proceedings = status,
-        request_proceedings = request,
-        accreditation_proceedings = accreditation,
-        constitutive_act_proceedings = constitutive_act,
-        identification_proceedings = identification,
-        location_proceedings = location,
-        plane_proceedings = plane,
-        comments = comments
-    )
-    procceding.save()
+def editing_proccedings(request,id):
+    Status.objects.filter(id=id).update(status = request.POST['status'])
+    Request.objects.filter(id=id).update(request_pdf = request.POST['request'])
+    Property_Accreditation.objects.filter(id=id).update(document_pdf = request.POST['accreditation'])
+    Constitutive_Act.objects.filter(id=id).update(act_pdf = request.POST['constitutive_act'])
+    Identification_Type.objects.filter(id=id).update(identification_type = request.POST['identification'])
+    Location.objects.filter(id=id).update(photo_ubication = request.POST['location'])
+    Plane.objects.filter(id=id).update(plane_pdf = request.POST['plane'])
+    Proceedings.objects.filter(id=id).update(comments = request.POST['comments'])
     return redirect('/')
 
 
