@@ -1,0 +1,7 @@
+<form action="{% url 'superadmin_app:superadmin-usuario-editado' %}" method="post"> {% csrf_token %}
+    <input type="text" name="id" id="id" class="form-control" value="{{user.id}}" readonly>
+    <input type="text" name="username" id="" value="{{user.username}}">
+    <input type="text" name="password" id="" value="{{user.password}}">
+    <input type="text" name="privilege" id="" value="{{user.privilege}}">
+    <input type="submit" value="Editar Usuario">
+</form>

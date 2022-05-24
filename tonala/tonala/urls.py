@@ -20,8 +20,12 @@ urlpatterns = [
     path(
         'admin/', 
          admin.site.urls),
+    path('', 
+        include('apps.home.urls')),
     path('',
         include('apps.capture.urls')),
     path('', 
         include('apps.superuser.urls')),
+    path('', 
+        include('apps.administrator.urls')),
 ]

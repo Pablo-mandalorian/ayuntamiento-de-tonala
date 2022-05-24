@@ -12,8 +12,8 @@
 </div>
 {% endfor %}
 {% endif %}
-<form class="form-signin" action="{% url 'capture_app:inicio' %}" method="POST">{% csrf_token %}
-    <h1 class="information">Please sign in CAPTURIST</h1>
+<form class="form-signin" action="{% url 'administrator_app:inicio_administrador' %}" method="POST">{% csrf_token %}
+    <h1 class="information">Please sign in ADMINISTRATOR</h1>
     <div class="form-float">
         <input type="text" class="form-control" id="username" name="username" placeholder="Username">
         <label for="username">Username</label>

@@ -8,29 +8,48 @@ from ..superuser.forms import *
 def login(request):
     return render(request, 'superuser/login.html')
 
-'''''
-def save_user(request):
+def delete_user(request, id):
+    user = User.objects.get(id=id)
+    user.delete()
+    return redirect('/')
+
+def edit_user(request, id):
+    user = User.objects.get(id=id)
+    return render(request, 'superuser/edit_user.html', {"user":user})
+
+def editing_user(request):
+    id = request.POST['id']
     username = request.POST['username']
     privilege = request.POST['privilege']
     password = request.POST['password']
-
-    if username and privilege and password and request.method == 'POST':
-        User = User.objects.create(
-            username = username, privilege = privilege, password = password
-        )
-        messages.success(request,'User Saved!')
-        return redirect('/')
-'''
-
-def delete_user(request):
-    return
-
-def edit_user(request):
-    return
+    user = User.objects.get(id=id)
+    user.username = username
+    user.privilege = privilege
+    user.password = password
+    user.save()
+    return redirect('superadmin-usuarios/')
 
 def show_user(request):
-    return
+    users = User.objects.all()
+    messages.success(request,'Expedientes Listados Correctamente')
+    return render(request, 'superuser/users.html', {"users":users})
 
+def create_user(request):
+    return render(request,'superuser/create_user.html')
+
+def creating_user(request):
+    username = request.POST['username']
+    privilege = request.POST['privilege']
+    password = request.POST['password']
+    if username and privilege and password and request.method == 'POST':
+        user = User(            
+            username = username,
+            privilege = privilege, 
+            password = password
+        )
+        user.save()
+        messages.success(request,'User Saved!')
+        return redirect('/home')
 
 def home(request):
     if request.method == "POST":

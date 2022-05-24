@@ -2,14 +2,9 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
 from .forms import *
-from django.urls import reverse
 
 
 # Create your views here.
-
-
-def index(request):
-    return render(request, 'capture/index.html')
 
 
 def login(request):
@@ -43,19 +38,6 @@ def delete_proccedings(request, id):
     proccedings = Proceedings.objects.get(id=id)
     proccedings.delete()
     return redirect('/')
-'''''
-def save_user(request):
-    username = request.POST['username']
-    privilege = request.POST['privilege']
-    password = request.POST['password']
-
-    if username and privilege and password and request.method == 'POST':
-        User = User.objects.create(
-            username = username, privilege = privilege, password = password
-        )
-        messages.success(request,'User Saved!')
-        return redirect('/')
-'''
 
 
 def home(request):
@@ -82,7 +64,6 @@ def uploadFile(request):
         owner = request.POST['owner']
         pdf = request.FILES['pdf']
         cover = request.FILES['cover']
-
         a = Files(filename=filename, owner=owner, pdf=pdf, cover=cover)
         a.save()
         messages.success(request, 'Files Submitted successfully!')
@@ -91,4 +72,3 @@ def uploadFile(request):
     	messages.error(request, 'Files was not Submitted successfully!')
     	return redirect('form')
 '''
-

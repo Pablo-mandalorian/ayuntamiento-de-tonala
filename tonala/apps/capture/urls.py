@@ -1,12 +1,10 @@
-from django.urls import URLPattern, path
+from django.urls import path
 from . import views
-from django.contrib.auth import views as auth_view
 
 
 app_name = 'capture_app'
 urlpatterns = [
-    path('',views.index, name="index"),
-    path('iniciar_sesion/',views.login, name="iniciar_sesion"),
+    path('capturista-iniciar-sesion/',views.login, name="capturista-iniciar-sesion"),
     path('inicio/', views.home, name="inicio"),
     path('expediente/', views.proccedings, name="expediente"),
     path('editar-expediente/<int:id>', views.edit_proccedings, name="editar-expediente"),

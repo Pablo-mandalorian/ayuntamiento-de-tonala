@@ -1,0 +1,8 @@
+<form action="{% url 'superadmin_app:creando-usuario' %}" method="post">{% csrf_token %}
+
+    <input type="text" name="username" placeholder="nombre de usuario">
+    <input type="password" name="password" placeholder="contraseña">
+    <input type="number"" name="privilege" placeholder="privilegio">
+    <input type="submit" value="Crear Usuario">
+
+</form>
