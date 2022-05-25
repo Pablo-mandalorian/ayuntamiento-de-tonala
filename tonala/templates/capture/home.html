@@ -1,6 +1,12 @@
 Bienvenido! {{username}}
 <br>
-<a href="{% url 'capture_app:expediente' %}">Expedientes</a>
-<a href="http://"></a>
-<a href="http://"></a>
-<a href="http://"></a>
+<link href="{% static, 'css/home.css'%}"
+<div class="topnavbar">
+    <a href="{% url 'capture_app:expediente' %}">Expedientes</a>
+    <a href="{%url 'capture_app:lineatiempo'%}">Linea de Proceso</a>
+    <a href="http://"></a>
+    <a href="http://"></a>
+</div>
+<div class="tittle">
+Bienvenido! {{username}}
+</div>

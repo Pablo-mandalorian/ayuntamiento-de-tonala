@@ -10,4 +10,5 @@ urlpatterns = [
     path('editar-expediente/<int:id>', views.edit_proccedings, name="editar-expediente"),
     path('expediente-editado/<int:id>', views.editing_proccedings, name="expediente-editado"),
     path('eliminar-expediente/<int:id>', views.delete_proccedings, name="eliminar-expediente"),
+    path('lineatiempo/', views.lineatiempo, name="lineatiempo")
 ]

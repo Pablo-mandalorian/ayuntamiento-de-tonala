@@ -10,6 +10,8 @@ from .forms import *
 def login(request):
     return render(request, 'capture/login.html')
 
+def lineatiempo(request):
+    return render(request,'capture/timeline.html')
 
 def proccedings(request):
     proccedings = Proceedings.objects.all()
